@@ -27,7 +27,8 @@ public class CarController : MonoBehaviour
 
     public List<Wheel> wheels;
 
-    float moveInput, steerInput, incrementAcceleration = 15000;
+    float moveInput, steerInput;
+    float incrementAcceleration = 15000;
     
 
     private Rigidbody carRb;
