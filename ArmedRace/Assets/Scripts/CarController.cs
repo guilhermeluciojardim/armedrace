@@ -17,10 +17,9 @@ public class CarController : MonoBehaviour
 
         public Axe1 axe1;
     }
-    public float maxAcceleration;
+    public float maxAcceleration, maxSpeed;
     public float brakeAcceleration;
 
-    public float turnSensitivity;
     public float maxSteerAngle;
 
     public Vector3 _centerOfMass;
@@ -54,7 +53,13 @@ public class CarController : MonoBehaviour
      void Move(){
         foreach(var wheel in wheels){
             if (wheel.axe1 == Axe1.Front){
-                wheel.wheelCollider.motorTorque = moveInput * maxAcceleration;
+                if (carRb.velocity.magnitude < maxSpeed){
+                    wheel.wheelCollider.motorTorque = moveInput * maxAcceleration;
+                }
+                else{
+                    wheel.wheelCollider.motorTorque = maxAcceleration;
+                }
+                
             }
         }
     }
@@ -62,8 +67,8 @@ public class CarController : MonoBehaviour
     void Steer(){
         foreach(var wheel in wheels){
             if (wheel.axe1 == Axe1.Front){
-                var _steerAngle = steerInput * turnSensitivity * maxSteerAngle;
-                wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, _steerAngle, 0.6f);
+                var _steerAngle = steerInput * maxSteerAngle;
+                wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, _steerAngle, 0.8f);
                 
             }
         }
