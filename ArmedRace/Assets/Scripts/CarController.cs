@@ -37,7 +37,9 @@ public class CarController : MonoBehaviour
     }
 
     void Update(){
-        GetInputs();
+        if (gameObject.CompareTag("Player")) {
+            SetInputs (Input.GetAxis("Vertical"),Input.GetAxis("Horizontal"));
+        }
         AnimateWheels();
     }
     void LateUpdate(){
@@ -45,10 +47,10 @@ public class CarController : MonoBehaviour
         Steer();
         Brake();
     }
-
-    void GetInputs(){
-        moveInput = - Input.GetAxis("Vertical");
-        steerInput = Input.GetAxis("Horizontal");
+    
+    public void SetInputs(float move, float turn){
+            moveInput = - move;
+            steerInput = turn;
     }
      void Move(){
         foreach(var wheel in wheels){
@@ -69,7 +71,6 @@ public class CarController : MonoBehaviour
             if (wheel.axe1 == Axe1.Front){
                 var _steerAngle = steerInput * maxSteerAngle;
                 wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, _steerAngle, 0.8f);
-                
             }
         }
     }
