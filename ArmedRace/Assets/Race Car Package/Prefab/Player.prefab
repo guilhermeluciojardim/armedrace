@@ -432,7 +432,7 @@ GameObject:
   - component: {fileID: 442340882}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -548,10 +548,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d3882a4e8fab5d43a3a6946163411af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAcceleration: 5000
-  maxSpeed: 30
+  maxAcceleration: 3000
+  maxSpeed: 22
   brakeAcceleration: 15000
-  maxSteerAngle: 30
+  maxSteerAngle: 15
   _centerOfMass: {x: 0, y: -1, z: 0}
   wheels:
   - sheelModel: {fileID: 1387135444556190}
