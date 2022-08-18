@@ -24,13 +24,13 @@ public class CarControllerAI : MonoBehaviour
         //Count how many target exists
         int index=trackPath.transform.childCount;
         //Populate the list
-        for (int i=1;i<index;i++){
+        for (int i=1;i<=index;i++){
             string targetName = "Target_" + i;
             currentTargetTransform = trackPath.transform.Find(targetName);
             targetList.Add(currentTargetTransform);
         }
         //Set the first Target
-        listIndex=1;
+        listIndex=0;
         currentTarget = targetList[listIndex];
     }
 
@@ -41,11 +41,11 @@ public class CarControllerAI : MonoBehaviour
         float distToTarget = Vector3.Distance (transform.position, currentTarget.position);
         if (distToTarget < 10f){
             //Lap completed
-            if (listIndex >= targetList.Count){
-                listIndex=1;    
+            if (listIndex < targetList.Count -1){
+                listIndex+=1;    
             }
             else{
-                listIndex+=1;
+                listIndex=0;
             }
             currentTarget = targetList[listIndex];
         }
@@ -73,7 +73,7 @@ public class CarControllerAI : MonoBehaviour
         }
 
         carDriver.SetInputs(forwardAmount, turnAmount);
-        StartCoroutine(CheckTimeStuck(transform.position, transform.rotation));
+        StartCoroutine(CheckTimeStuck(transform.position));
     }
 
     public void SetNextTarget(Vector3 nextTarget){
@@ -82,13 +82,13 @@ public class CarControllerAI : MonoBehaviour
 
    
 
-    IEnumerator CheckTimeStuck(Vector3 pos, Quaternion rot){
+    IEnumerator CheckTimeStuck(Vector3 pos){
         yield return new WaitForSeconds(3);
         float distance = Vector3.Distance (transform.position,pos);
         Vector3 offset = new Vector3(0,0.5f,0);
         if (distance<5){
             transform.position = targetList[listIndex].position + offset;
-            transform.rotation = rot;
+            transform.rotation = carDriver.initialRot;
             //transform.LookAt(targetList[listIndex].position);
         }
     }

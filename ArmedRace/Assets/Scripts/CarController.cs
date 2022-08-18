@@ -17,6 +17,8 @@ public class CarController : MonoBehaviour
 
         public Axe1 axe1;
     }
+
+    public Quaternion initialRot;
     public float maxAcceleration, maxSpeed;
     public float brakeAcceleration;
 
@@ -34,6 +36,7 @@ public class CarController : MonoBehaviour
     private void Start(){
         carRb = GetComponent<Rigidbody>();
         carRb.centerOfMass = _centerOfMass;
+        initialRot = transform.rotation;
     }
 
     void Update(){
