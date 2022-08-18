@@ -12,13 +12,13 @@
 
 ### Next adjusts and improvements
 
-- [ ] Set cameras around the player
-- [ ] Create player controller
-- [ ] Create AI and Enemy controller
+- [x] Set cameras around the player
+- [x] Create player controller
+- [x] Create AI and Enemy controller
 - [ ] Creating shooting with particles
 - [ ] Create obstacles 
 - [ ] Create objects behaviours
-- [ ] Create map
+- [x] Create map
 - [ ] Create Game Menu
 - [ ] Build Project
 
