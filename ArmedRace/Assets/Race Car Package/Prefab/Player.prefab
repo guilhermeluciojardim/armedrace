@@ -456,6 +456,7 @@ Transform:
   - {fileID: 2630377035188158968}
   - {fileID: 7015978464769204546}
   - {fileID: 7305399429685108976}
+  - {fileID: 3524043511531154585}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -572,9 +573,16 @@ MonoBehaviour:
   - sheelModel: {fileID: 1578029948469408}
     wheelCollider: {fileID: 57806663302642645}
     axe1: 1
-  turboTank: 0
   turboEffect: {fileID: 1634767862067424, guid: 007c57e2df8e9b144b99f471b84f3d56,
     type: 3}
+  minePrefab: {fileID: 119916, guid: 3a73e26f88957b343af0490c9403c8f0, type: 3}
+  minePlacer: {fileID: 698302610251942063}
+  steerEffect: {fileID: 1000011945391522, guid: 78b71003e8b357d4bbf89c8b5e5e4f0e,
+    type: 3}
+  respawnEffect: {fileID: 1912731163003908, guid: c5febdd93ab44d640b3eb37b768360bb,
+    type: 3}
+  trackPath: {fileID: 0}
+  targetList: []
 --- !u!114 &80454587882574683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,6 +600,37 @@ MonoBehaviour:
     type: 3}
   machineGunTransform: {fileID: 7357877238478686536}
   missileGunTransform: {fileID: 1296389133665448839}
+--- !u!1 &698302610251942063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3524043511531154585}
+  m_Layer: 0
+  m_Name: MinePlacer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3524043511531154585
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698302610251942063}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.645, z: 3.41}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4922170374542132}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1086893920419893984
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,7 +877,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5122280036318768262}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: -0.00014458595}
-  m_LocalPosition: {x: -0.010680398, y: -0.28, z: 2.39}
+  m_LocalPosition: {x: -0.010680398, y: -0.5309857, z: 2.2528327}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -860,7 +899,7 @@ Light:
   m_Intensity: 30
   m_Range: 20
   m_SpotAngle: 25
-  m_InnerSpotAngle: 2
+  m_InnerSpotAngle: 1
   m_CookieSize: 1
   m_Shadows:
     m_Type: 0

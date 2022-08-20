@@ -7,6 +7,7 @@ public class CarControllerAI : MonoBehaviour
     [SerializeField] private Transform currentTarget;
     [SerializeField] private List<Transform> targetList = new List<Transform>();
     [SerializeField] private GameObject trackPath;
+    [SerializeField] private GameObject respawnEffect;
     private Transform currentTargetTransform;
     private CarController carDriver;
     private Vector3 nextTarget;
@@ -80,8 +81,6 @@ public class CarControllerAI : MonoBehaviour
         this.nextTarget = nextTarget;
     }    
 
-   
-
     IEnumerator CheckTimeStuck(Vector3 pos){
         yield return new WaitForSeconds(3);
         float distance = Vector3.Distance (transform.position,pos);
@@ -91,7 +90,8 @@ public class CarControllerAI : MonoBehaviour
             transform.rotation = carDriver.initialRot;
             transform.LookAt(targetList[listIndex+1].position);
             transform.Rotate(0,180,0);
-            
+            GameObject respawn = GameObject.Instantiate(respawnEffect, transform.position, transform.rotation) as GameObject;
+            GameObject.Destroy(respawn, 1f); 
         }
     }
 }

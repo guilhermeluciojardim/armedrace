@@ -3619,6 +3619,11 @@ PrefabInstance:
       propertyPath: trackPath
       value: 
       objectReference: {fileID: 395842797}
+    - target: {fileID: 5012197218364290009, guid: e49a8bcd44434de4fbd15b46bf3fd304,
+        type: 3}
+      propertyPath: trackPath
+      value: 
+      objectReference: {fileID: 395842797}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49a8bcd44434de4fbd15b46bf3fd304, type: 3}
 --- !u!1001 &439568601
@@ -8619,6 +8624,10 @@ PrefabInstance:
       propertyPath: trackPath
       value: 
       objectReference: {fileID: 395842797}
+    - target: {fileID: 1772492181, guid: b60d7f9e75fb4ae49bb7ed090888cd1d, type: 3}
+      propertyPath: trackPath
+      value: 
+      objectReference: {fileID: 395842797}
     - target: {fileID: 1183083895199056, guid: b60d7f9e75fb4ae49bb7ed090888cd1d, type: 3}
       propertyPath: m_Name
       value: Enemy_1
@@ -8676,6 +8685,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 442340882, guid: 663342408c5e6e24f8e0cb584631c6ad, type: 3}
+      propertyPath: trackPath
+      value: 
+      objectReference: {fileID: 395842797}
     - target: {fileID: 1740865480142414, guid: 663342408c5e6e24f8e0cb584631c6ad, type: 3}
       propertyPath: m_Name
       value: Player
@@ -10832,6 +10845,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6768879122982400999, guid: 7270d86670806f44a9c24b44dfc8c67c,
+        type: 3}
+      propertyPath: trackPath
+      value: 
+      objectReference: {fileID: 395842797}
     - target: {fileID: 9178699189749581573, guid: 7270d86670806f44a9c24b44dfc8c67c,
         type: 3}
       propertyPath: trackPath
