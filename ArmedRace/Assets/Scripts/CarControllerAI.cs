@@ -89,7 +89,9 @@ public class CarControllerAI : MonoBehaviour
         if (distance<5){
             transform.position = targetList[listIndex].position + offset;
             transform.rotation = carDriver.initialRot;
-            //transform.LookAt(targetList[listIndex].position);
+            transform.LookAt(targetList[listIndex+1].position);
+            transform.Rotate(0,180,0);
+            
         }
     }
 }

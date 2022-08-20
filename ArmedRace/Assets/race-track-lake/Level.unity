@@ -1050,17 +1050,17 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.19328503, g: 0.3719312, b: 0.47794116, a: 1}
+  m_Color: {r: 0.14173195, g: 0.25770533, b: 0.3301887, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.2
+    m_Strength: 0.193
     m_Bias: 1.018
     m_NormalBias: 0.11
     m_NearPlane: 0.2
@@ -3493,7 +3493,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.9705882, g: 0.88681835, b: 0.7065311, a: 1}
+  m_Color: {r: 0.24528301, g: 0.23742224, b: 0.22098611, a: 1}
   m_Intensity: 1.6
   m_Range: 10
   m_SpotAngle: 30
@@ -5030,6 +5030,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 277239963}
     m_Modifications:
+    - target: {fileID: 100012, guid: 853554035d67ed8458014b199fd7d9d9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 853554035d67ed8458014b199fd7d9d9, type: 3}
       propertyPath: m_LocalScale.y
       value: 1.565007
@@ -10827,11 +10831,6 @@ PrefabInstance:
     - target: {fileID: 4901448687493340, guid: 7270d86670806f44a9c24b44dfc8c67c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6768879122982400999, guid: 7270d86670806f44a9c24b44dfc8c67c,
-        type: 3}
-      propertyPath: maxSpeed
-      value: 21.5
       objectReference: {fileID: 0}
     - target: {fileID: 9178699189749581573, guid: 7270d86670806f44a9c24b44dfc8c67c,
         type: 3}

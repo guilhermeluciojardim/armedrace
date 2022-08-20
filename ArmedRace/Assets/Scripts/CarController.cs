@@ -29,6 +29,10 @@ public class CarController : MonoBehaviour
     public List<Wheel> wheels;
 
     float moveInput, steerInput;
+
+    public float turboTank;
+
+    public GameObject turboEffect;
     
 
     private Rigidbody carRb;
@@ -37,6 +41,7 @@ public class CarController : MonoBehaviour
         carRb = GetComponent<Rigidbody>();
         carRb.centerOfMass = _centerOfMass;
         initialRot = transform.rotation;
+        turboTank = 3f;
     }
 
     void Update(){
@@ -46,9 +51,12 @@ public class CarController : MonoBehaviour
         AnimateWheels();
     }
     void LateUpdate(){
+        if (gameObject.CompareTag("Player")) {
+            HandBrake();
+            Turbo();
+        }
         Move();
         Steer();
-        Brake();
     }
     
     public void SetInputs(float move, float turn){
@@ -88,16 +96,30 @@ public class CarController : MonoBehaviour
         }
     }
 
-    void Brake(){
+    void HandBrake(){
         if (Input.GetKey(KeyCode.Space)){
             foreach (var wheel in wheels){
-                wheel.wheelCollider.brakeTorque = brakeAcceleration;
+                if (wheel.axe1 == Axe1.Rear){
+                    wheel.wheelCollider.brakeTorque = brakeAcceleration;
+                }
+                else{
+                    wheel.wheelCollider.brakeTorque = brakeAcceleration * 1000f;
+                }
             }
         }
         else{
             foreach (var wheel in wheels){
                 wheel.wheelCollider.brakeTorque = 0;
             }
+        }
+    }
+
+    void Turbo(){
+        if ((Input.GetKey(KeyCode.LeftShift)) && (turboTank>0)){
+            carRb.AddForce(-transform.forward * 30000f);
+            turboTank -= Time.deltaTime;
+            GameObject turbo = GameObject.Instantiate(turboEffect, transform.position, transform.rotation) as GameObject;
+            GameObject.Destroy(turbo, 1f);            
         }
     }
 
