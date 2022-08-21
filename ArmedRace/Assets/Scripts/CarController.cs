@@ -45,6 +45,8 @@ public class CarController : MonoBehaviour
     public GameObject steerEffect;
     public GameObject respawnEffect;
 
+    private int lapsByPlayer;
+
     [SerializeField] private GameObject trackPath;
     [SerializeField] private List<Transform> targetList = new List<Transform>();
 
@@ -59,15 +61,19 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform machineGunTransform;
     [SerializeField] private Transform missileGunTransform;
     [SerializeField] private Scrollbar turboScrollBar;
+
+    [SerializeField] private Camera topViewCamera;
+    [SerializeField] private Camera backViewCamera;
     
 
     private void Start(){
         carRb = GetComponent<Rigidbody>();
         carRb.centerOfMass = _centerOfMass;
         initialRot = transform.rotation;
-        turboTank = 3f; maxTurboTank=3f;
+        turboTank = 3f; maxTurboTank = 3f;
         mines= 3; maxMines = 3;
         missiles = 3; maxMissiles = 3;
+        lapsByPlayer=0;
         GetTrackPath();
     }
 
@@ -94,6 +100,7 @@ public class CarController : MonoBehaviour
             DropMine();
             RespawnPlayer();
             PlayerFiring();
+            ChangeCamera();
         }
         Move();
         Steer();
@@ -165,7 +172,7 @@ public class CarController : MonoBehaviour
         if ((Input.GetKey(KeyCode.LeftShift)) && (turboTank>0)){
             carRb.AddForce(-transform.forward * 40000f);
             turboTank -= Time.deltaTime;
-            turboScrollBar.size -= Time.deltaTime;
+            turboScrollBar.size -= Time.deltaTime/maxTurboTank;
             GameObject turbo = GameObject.Instantiate(turboEffect, transform.position, transform.rotation) as GameObject;
             GameObject.Destroy(turbo, 1f);            
         }
@@ -240,7 +247,27 @@ public class CarController : MonoBehaviour
 
         turboTank = maxTurboTank;
         turboScrollBar.size = 1f;
-
-
     }
+
+    void ChangeCamera(){
+        if (Input.GetKeyDown(KeyCode.C)){
+            if (topViewCamera.gameObject.activeSelf){
+                backViewCamera.gameObject.SetActive(true);
+                topViewCamera.gameObject.SetActive(false);
+            }
+            else{
+                topViewCamera.gameObject.SetActive(true);
+                backViewCamera.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void SetLaps(){
+        lapsByPlayer +=1;
+    }
+    public int GetLaps(){
+        return lapsByPlayer;
+    }
+
+
 }
