@@ -430,7 +430,6 @@ GameObject:
   - component: {fileID: 404864717149061116}
   - component: {fileID: 2422754505262496726}
   - component: {fileID: 442340882}
-  - component: {fileID: 80454587882574683}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -583,18 +582,8 @@ MonoBehaviour:
     type: 3}
   trackPath: {fileID: 0}
   targetList: []
---- !u!114 &80454587882574683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1740865480142414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 164bc047a469fd7438ce7a9dc3be63fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  minesImageList: []
+  missilesImageList: []
   machinegunShotPrefab: {fileID: 136330, guid: 9a0c3383523899643a8d0661cfaca4e4, type: 3}
   missilePrefab: {fileID: 4285155241439558423, guid: 305146a95435dbf479f2658fe32c1bd5,
     type: 3}

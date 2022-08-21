@@ -9,7 +9,7 @@ public class MineBehavior : MonoBehaviour
         if ((coll.gameObject.CompareTag("Car")) || (coll.gameObject.CompareTag("Player"))){
             GameObject exp = GameObject.Instantiate(explosionEffect,transform.position,transform.rotation);
             GameObject.Destroy(exp,1f);
-            coll.GetComponent<Rigidbody>().AddForce(coll.transform.position,ForceMode.VelocityChange);
+            coll.GetComponent<Rigidbody>().AddForce(coll.transform.position,ForceMode.Acceleration);
             Destroy(gameObject);
         }
         

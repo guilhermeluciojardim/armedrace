@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class CarController : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class CarController : MonoBehaviour
     public GameObject turboEffect;
     
     private int mines, maxMines;
+    private int missiles, maxMissiles;
     public GameObject minePrefab;
 
     public GameObject minePlacer;
@@ -48,12 +50,24 @@ public class CarController : MonoBehaviour
 
     private Transform nearestRespawnPoint;
 
+    [SerializeField] private List<Image> minesImageList = new List<Image>();
+    
+    [SerializeField] private List<Image> missilesImageList = new List<Image>();
+
+     [SerializeField] private GameObject machinegunShotPrefab;
+    [SerializeField] private GameObject missilePrefab;
+    [SerializeField] private Transform machineGunTransform;
+    [SerializeField] private Transform missileGunTransform;
+    [SerializeField] private Scrollbar turboScrollBar;
+    
+
     private void Start(){
         carRb = GetComponent<Rigidbody>();
         carRb.centerOfMass = _centerOfMass;
         initialRot = transform.rotation;
         turboTank = 3f; maxTurboTank=3f;
         mines= 3; maxMines = 3;
+        missiles = 3; maxMissiles = 3;
         GetTrackPath();
     }
 
@@ -79,6 +93,7 @@ public class CarController : MonoBehaviour
             Turbo();
             DropMine();
             RespawnPlayer();
+            PlayerFiring();
         }
         Move();
         Steer();
@@ -150,6 +165,7 @@ public class CarController : MonoBehaviour
         if ((Input.GetKey(KeyCode.LeftShift)) && (turboTank>0)){
             carRb.AddForce(-transform.forward * 40000f);
             turboTank -= Time.deltaTime;
+            turboScrollBar.size -= Time.deltaTime;
             GameObject turbo = GameObject.Instantiate(turboEffect, transform.position, transform.rotation) as GameObject;
             GameObject.Destroy(turbo, 1f);            
         }
@@ -159,6 +175,9 @@ public class CarController : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.Tab)) && (mines>0)){
             Vector3 offset = new Vector3(5,0,0);
             GameObject mine = GameObject.Instantiate(minePrefab, minePlacer.transform.position, minePlacer.transform.rotation) as GameObject;
+            if (gameObject.CompareTag("Player")){
+                minesImageList[mines-1].gameObject.SetActive(false);
+            }
             mines -=1;
         }
     }
@@ -180,5 +199,48 @@ public class CarController : MonoBehaviour
             GameObject.Destroy(respawn, 1f); 
         }
     }
+    
+    void PlayerFiring(){
+        if (Input.GetKeyDown(KeyCode.LeftControl)){
+            FireMachineGun();
+        }
+        else if (Input.GetKey(KeyCode.LeftControl)){
+            FireMachineGun();
+        }
+        if (Input.GetKeyDown(KeyCode.LeftAlt)){
+            FireMissile();
+        }
+    }
+    public void FireMachineGun(){
+            GameObject shot = GameObject.Instantiate(machinegunShotPrefab, machineGunTransform.position, machineGunTransform.transform.rotation) as GameObject;
+            GameObject.Destroy(shot, 1.5f);
+    }
+    public void FireMissile(){
+        if (missiles > 0){
+            GameObject shot = GameObject.Instantiate(missilePrefab, missileGunTransform.position, missileGunTransform.transform.rotation) as GameObject;
+            GameObject.Destroy(shot, 1.5f);
+            if (gameObject.CompareTag("Player")){
+                missilesImageList[missiles-1].gameObject.SetActive(false);
+            }
+            missiles -=1;
+        }
+    }
 
+    public void RecoverWeapons(){
+
+        mines = maxMines;
+        for (int i=0;i<minesImageList.Count;i++){
+            minesImageList[i].gameObject.SetActive(true);
+        }
+
+        missiles = maxMissiles;
+        for (int i=0;i<missilesImageList.Count;i++){
+            missilesImageList[i].gameObject.SetActive(true);
+        }
+
+        turboTank = maxTurboTank;
+        turboScrollBar.size = 1f;
+
+
+    }
 }
