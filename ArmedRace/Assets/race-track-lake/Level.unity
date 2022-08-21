@@ -8689,6 +8689,18 @@ PrefabInstance:
       propertyPath: trackPath
       value: 
       objectReference: {fileID: 395842797}
+    - target: {fileID: 1888353957, guid: 663342408c5e6e24f8e0cb584631c6ad, type: 3}
+      propertyPath: orthographic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1888353957, guid: 663342408c5e6e24f8e0cb584631c6ad, type: 3}
+      propertyPath: field of view
+      value: 77
+      objectReference: {fileID: 0}
+    - target: {fileID: 1888353957, guid: 663342408c5e6e24f8e0cb584631c6ad, type: 3}
+      propertyPath: m_FOVAxisMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1740865480142414, guid: 663342408c5e6e24f8e0cb584631c6ad, type: 3}
       propertyPath: m_Name
       value: Player
