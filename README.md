@@ -22,12 +22,12 @@
 - [x] Create Game Menu
 - [x] Build Project
 
-##  🎮 The link for play will be provided here
+##  🎮 Download and Install
 
-https://
+https://drive.google.com/file/d/15Q9mwJ-1rZdQdIjEQLwbigg41nZMnn1P/view?usp=sharing
 
 ## 💻 System Requirements
 
-I'm currently using Unity 3D with unity Editor Version 2022.1.11f1 in Windows 10.
+Build for in Windows 10 or higher.
 
 [⬆ Voltar ao topo](#Corona)<br>
