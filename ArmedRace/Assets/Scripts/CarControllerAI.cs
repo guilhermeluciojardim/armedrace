@@ -38,7 +38,7 @@ public class CarControllerAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!carDriver.isAlive){
+        if (carDriver.isAlive){
             // Set the next target in the trackpath
             float distToTarget = Vector3.Distance (transform.position, currentTarget.position);
             if (distToTarget < 10f){
@@ -88,9 +88,9 @@ public class CarControllerAI : MonoBehaviour
         float distance = Vector3.Distance (transform.position,pos);
         Vector3 offset = new Vector3(0,0.5f,0);
         if (distance<5){
-            transform.position = targetList[listIndex].position + offset;
+            transform.position = targetList[listIndex-1].position + offset;
             transform.rotation = carDriver.initialRot;
-            transform.LookAt(targetList[listIndex+1].position);
+            transform.LookAt(targetList[listIndex].position);
             transform.Rotate(0,180,0);
             GameObject respawn = GameObject.Instantiate(respawnEffect, transform.position, transform.rotation) as GameObject;
             GameObject.Destroy(respawn, 1f); 

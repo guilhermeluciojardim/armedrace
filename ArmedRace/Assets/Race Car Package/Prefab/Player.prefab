@@ -686,6 +686,8 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   healthScrollBar: {fileID: 0}
+  isAlive: 0
+  engineAudio: {fileID: 0}
 --- !u!1 &698302610251942063
 GameObject:
   m_ObjectHideFlags: 0

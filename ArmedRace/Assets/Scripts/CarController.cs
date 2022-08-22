@@ -68,7 +68,8 @@ public class CarController : MonoBehaviour
     public float health,maxHealth;
     [SerializeField] private Scrollbar healthScrollBar;
     public bool isAlive;
-    
+
+    [SerializeField] private AudioSource engineAudio;
 
     private void Start(){
         carRb = GetComponent<Rigidbody>();
@@ -112,11 +113,8 @@ public class CarController : MonoBehaviour
             Move();
             Steer();
             CheckHealth();
-        }
-        else{
 
-        }
-        
+        }   
     }
     
     public void SetInputs(float move, float turn){

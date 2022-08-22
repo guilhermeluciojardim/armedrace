@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class RaceManager : MonoBehaviour
@@ -14,6 +16,7 @@ public class RaceManager : MonoBehaviour
     [SerializeField] private CarControllerAI AIEnemy3;
 
     [SerializeField] private TextMeshProUGUI getReadyText;
+    [SerializeField] private Button restartButton;
 
     private bool isRaceStarted, isRaceOver, isCountDownStarted;
     private float secondsForInitialCountDown;
@@ -41,6 +44,9 @@ public class RaceManager : MonoBehaviour
     }
 
     void Update(){
+        if (Input.GetKeyDown(KeyCode.P)){
+            PauseGame();
+        }
         if (!isCountDownStarted){
 
         }
@@ -51,10 +57,19 @@ public class RaceManager : MonoBehaviour
         else if (!isRaceOver){ 
             CountLapsForPlayers();
         }
-        else{
-            //Finish the Race
-        }
     }
+void PauseGame(){
+    if (Time.timeScale==1){
+        Time.timeScale=0;
+        getReadyText.text = "GAME PAUSED";
+        getReadyText.gameObject.SetActive(true);
+    }
+    else{
+        Time.timeScale=1;
+        getReadyText.gameObject.SetActive(false);
+    }
+}
+
     IEnumerator WaitToStartCountDown(){
         yield return new WaitForSeconds(3);
         isCountDownStarted=true;
@@ -80,6 +95,30 @@ public class RaceManager : MonoBehaviour
         }
     }
     void CountLapsForPlayers(){
+        if (player.GetLaps()==3){
+            getReadyText.text = "YOU WIN!!!";
+            PrepareRestart();
+        }
+        else if (Enemy1.GetLaps()==3){
+            getReadyText.text = "Blue Player Wins!";
+            PrepareRestart();
+        }
+        else if (Enemy2.GetLaps()==3){
+            getReadyText.text = "Red Player Wins!";
+            PrepareRestart();
+        }
+        else if (Enemy2.GetLaps()==3){
+            getReadyText.text = "Yellow Player Wins!";
+            PrepareRestart();
+        }
+    }
 
+    void PrepareRestart(){
+            getReadyText.gameObject.SetActive(true);
+            TurnOffControllers();
+            restartButton.gameObject.SetActive(true);
+    }
+    public void RestartRace(){
+        SceneManager.LoadScene(1);
     }
 }

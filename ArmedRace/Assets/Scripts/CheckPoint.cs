@@ -12,6 +12,7 @@ public class CheckPoint : MonoBehaviour
         if (coll.gameObject.CompareTag("Player")){
             car = coll.GetComponent<CarController>();
             car.RecoverWeapons();
+            car.SetLaps(1);
         }
         
     }
