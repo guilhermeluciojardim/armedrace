@@ -67,7 +67,7 @@ public class CarController : MonoBehaviour
 
     public float health,maxHealth;
     [SerializeField] private Scrollbar healthScrollBar;
-    public bool isAlive;
+    public bool isAlive,isMineAvailable;
 
     [SerializeField] private AudioSource engineAudio;
 
@@ -80,7 +80,7 @@ public class CarController : MonoBehaviour
         missiles = 3; maxMissiles = 3;
         lapsByPlayer=0;
         health = 100f; maxHealth=100f;
-        isAlive=true;
+        isAlive=true; isMineAvailable=true;
         GetTrackPath();
     }
 
@@ -104,8 +104,6 @@ public class CarController : MonoBehaviour
         if (isAlive){
             if (gameObject.CompareTag("Player")) {
                 HandBrake();
-                Turbo();
-                DropMine();
                 RespawnPlayer();
                 PlayerFiring();
                 ChangeCamera();
@@ -179,25 +177,37 @@ public class CarController : MonoBehaviour
         }
     }
 
-    void Turbo(){
-        if ((Input.GetKey(KeyCode.LeftShift)) && (turboTank>0)){
+    public void Turbo(){
+        if (turboTank>0){
             carRb.AddForce(-transform.forward * 40000f);
             turboTank -= Time.deltaTime;
-            turboScrollBar.size -= Time.deltaTime/maxTurboTank;
+            if (gameObject.CompareTag("Player")){
+                turboScrollBar.size -= Time.deltaTime/maxTurboTank;
+            }
             GameObject turbo = GameObject.Instantiate(turboEffect, transform.position, transform.rotation) as GameObject;
-            GameObject.Destroy(turbo, 1f);            
+            GameObject.Destroy(turbo, 1f);
         }
+                        
+        
     }
 
-    void DropMine(){
-        if ((Input.GetKeyDown(KeyCode.Tab)) && (mines>0)){
+    public void DropMine(){
+        if ((mines>0) && (isMineAvailable)){
             Vector3 offset = new Vector3(5,0,0);
             GameObject mine = GameObject.Instantiate(minePrefab, minePlacer.transform.position, minePlacer.transform.rotation) as GameObject;
             if (gameObject.CompareTag("Player")){
                 minesImageList[mines-1].gameObject.SetActive(false);
             }
             mines -=1;
+            isMineAvailable=false;
+            StartCoroutine(WaitForNextMine());
         }
+            
+    }
+    IEnumerator WaitForNextMine(){
+        yield return new WaitForSeconds(3);
+        isMineAvailable=true;
+        
     }
     void RespawnPlayer(){
         if (Input.GetKeyDown(KeyCode.R)){
@@ -228,6 +238,12 @@ public class CarController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftAlt)){
             FireMissile();
         }
+        if ((Input.GetKeyDown(KeyCode.Tab)) && (mines>0)){
+            DropMine();
+        }
+        if ((Input.GetKey(KeyCode.LeftShift)) && (turboTank>0)){
+            Turbo();
+        }
     }
     public void FireMachineGun(){
             GameObject shot = GameObject.Instantiate(machinegunShotPrefab, machineGunTransform.position, machineGunTransform.transform.rotation) as GameObject;
@@ -245,19 +261,18 @@ public class CarController : MonoBehaviour
     }
 
     public void RecoverWeapons(){
-
         mines = maxMines;
-        for (int i=0;i<minesImageList.Count;i++){
-            minesImageList[i].gameObject.SetActive(true);
-        }
-
         missiles = maxMissiles;
-        for (int i=0;i<missilesImageList.Count;i++){
-            missilesImageList[i].gameObject.SetActive(true);
-        }
-
         turboTank = maxTurboTank;
-        turboScrollBar.size = 1f;
+        if (gameObject.CompareTag("Player")){
+            for (int i=0;i<minesImageList.Count;i++){
+                minesImageList[i].gameObject.SetActive(true);
+            }
+            for (int i=0;i<missilesImageList.Count;i++){
+                missilesImageList[i].gameObject.SetActive(true);
+            }
+            turboScrollBar.size = 1f;
+        }
     }
 
     void ChangeCamera(){
@@ -279,7 +294,7 @@ public class CarController : MonoBehaviour
 
     void OnCollisionEnter(Collision coll){
         if (coll.gameObject.CompareTag("Bullet")){
-            health -= 0.25f;
+            health -= 0.20f;
             UpdateHealthBar(); 
         }
         else if (coll.gameObject.CompareTag("Missile")){
@@ -289,7 +304,7 @@ public class CarController : MonoBehaviour
     }
     void OnTriggerEnter(Collider coll){
         if (coll.gameObject.CompareTag("Mine")){
-            health -= 15f;
+            health -= 10f;
             UpdateHealthBar();
         }
     }

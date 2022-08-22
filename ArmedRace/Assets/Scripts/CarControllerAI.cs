@@ -15,6 +15,8 @@ public class CarControllerAI : MonoBehaviour
      float turnAmount = 0f;
      int listIndex;
 
+     [SerializeField] private List<GameObject> otherCarsList = new List<GameObject>();
+
     // Start is called before the first frame update
     void Awake(){
         carDriver = GetComponent<CarController>();
@@ -39,6 +41,7 @@ public class CarControllerAI : MonoBehaviour
     void Update()
     {
         if (carDriver.isAlive){
+
             // Set the next target in the trackpath
             float distToTarget = Vector3.Distance (transform.position, currentTarget.position);
             if (distToTarget < 10f){
@@ -76,6 +79,66 @@ public class CarControllerAI : MonoBehaviour
 
             carDriver.SetInputs(forwardAmount, turnAmount);
             StartCoroutine(CheckTimeStuck(transform.position));
+            //Enemy0
+            //Shoot if there is enemy car in front
+            //Place Mines if there is enemy car in back
+            
+                Vector3 dirToEnemy0 = (otherCarsList[0].transform.position - transform.position).normalized;
+                float dotEnemy0 = Vector3.Dot(transform.forward, dirToEnemy0);
+
+                if (dotEnemy0 < 0){
+                    carDriver.FireMachineGun();
+                }
+                else{
+                    carDriver.DropMine();
+                }
+                //Fire Missiles
+                float distToEnemy0 = Vector3.Distance (transform.position, otherCarsList[0].transform.position);
+                if ((distToEnemy0 > 15f) && (dotEnemy0<0)){
+                    carDriver.FireMissile();
+                }
+            //Enemy1
+            //Shoot if there is enemy car in front
+            //Place Mines if there is enemy car in back
+            
+                Vector3 dirToEnemy1 = (otherCarsList[1].transform.position - transform.position).normalized;
+                float dotEnemy1 = Vector3.Dot(transform.forward, dirToEnemy1);
+
+                if (dotEnemy1 < 0){
+                    carDriver.FireMachineGun();
+                }
+                else{
+                    carDriver.DropMine();
+                }
+                //Fire Missiles
+                float distToEnemy1 = Vector3.Distance (transform.position, otherCarsList[1].transform.position);
+                if ((distToEnemy1 > 15f) && (dotEnemy1<0)){
+                    carDriver.FireMissile();
+                }      
+            //Enemy2
+            //Shoot if there is enemy car in front
+            //Place Mines if there is enemy car in back
+            
+                Vector3 dirToEnemy2 = (otherCarsList[2].transform.position - transform.position).normalized;
+                float dotEnemy2 = Vector3.Dot(transform.forward, dirToEnemy2);
+
+                if (dotEnemy2 < 0){
+                    carDriver.FireMachineGun();
+                }
+                else{
+                    carDriver.DropMine();
+                }
+                //Fire Missiles
+                float distToEnemy2 = Vector3.Distance (transform.position, otherCarsList[2].transform.position);
+                if ((distToEnemy2 > 15f) && (dotEnemy2<0)){
+                    carDriver.FireMissile();
+                }          
+            
+            // Use turbo if is on right place of track
+            if ((listIndex==1) || (listIndex==3) || (listIndex==12) || (listIndex==13) || (listIndex==28)) {
+                carDriver.Turbo();
+            }
+
         }
     }
 
@@ -88,9 +151,9 @@ public class CarControllerAI : MonoBehaviour
         float distance = Vector3.Distance (transform.position,pos);
         Vector3 offset = new Vector3(0,0.5f,0);
         if (distance<5){
-            transform.position = targetList[listIndex-1].position + offset;
+            transform.position = targetList[listIndex].position + offset;
             transform.rotation = carDriver.initialRot;
-            transform.LookAt(targetList[listIndex].position);
+            transform.LookAt(targetList[listIndex+1].position);
             transform.Rotate(0,180,0);
             GameObject respawn = GameObject.Instantiate(respawnEffect, transform.position, transform.rotation) as GameObject;
             GameObject.Destroy(respawn, 1f); 

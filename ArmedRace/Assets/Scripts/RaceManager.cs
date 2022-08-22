@@ -44,9 +44,7 @@ public class RaceManager : MonoBehaviour
     }
 
     void Update(){
-        if (Input.GetKeyDown(KeyCode.P)){
-            PauseGame();
-        }
+        
         if (!isCountDownStarted){
 
         }
@@ -54,7 +52,10 @@ public class RaceManager : MonoBehaviour
             getReadyText.fontSize = 70;
             InitialCountDown();
         }
-        else if (!isRaceOver){ 
+        else if (!isRaceOver){
+            if (Input.GetKeyDown(KeyCode.P)){
+               PauseGame();
+            } 
             CountLapsForPlayers();
         }
     }
@@ -107,7 +108,7 @@ void PauseGame(){
             getReadyText.text = "Red Player Wins!";
             PrepareRestart();
         }
-        else if (Enemy2.GetLaps()==3){
+        else if (Enemy3.GetLaps()==3){
             getReadyText.text = "Yellow Player Wins!";
             PrepareRestart();
         }
@@ -117,6 +118,7 @@ void PauseGame(){
             getReadyText.gameObject.SetActive(true);
             TurnOffControllers();
             restartButton.gameObject.SetActive(true);
+            isRaceOver = true;
     }
     public void RestartRace(){
         SceneManager.LoadScene(1);

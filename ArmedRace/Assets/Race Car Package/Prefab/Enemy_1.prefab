@@ -138,11 +138,19 @@ MonoBehaviour:
   targetList: []
   minesImageList: []
   missilesImageList: []
-  machinegunShotPrefab: {fileID: 0}
-  missilePrefab: {fileID: 0}
-  machineGunTransform: {fileID: 0}
-  missileGunTransform: {fileID: 0}
+  machinegunShotPrefab: {fileID: 136330, guid: 9a0c3383523899643a8d0661cfaca4e4, type: 3}
+  missilePrefab: {fileID: 4285155241439558423, guid: 305146a95435dbf479f2658fe32c1bd5,
+    type: 3}
+  machineGunTransform: {fileID: 3062460480290010676}
+  missileGunTransform: {fileID: 9026312593290953968}
   turboScrollBar: {fileID: 0}
+  topViewCamera: {fileID: 0}
+  backViewCamera: {fileID: 0}
+  health: 0
+  maxHealth: 0
+  healthScrollBar: {fileID: 0}
+  isAlive: 0
+  engineAudio: {fileID: 0}
 --- !u!114 &1772492180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +168,7 @@ MonoBehaviour:
   trackPath: {fileID: 0}
   respawnEffect: {fileID: 1912731163003908, guid: c5febdd93ab44d640b3eb37b768360bb,
     type: 3}
+  otherCarsList: []
 --- !u!54 &517860260072212519
 Rigidbody:
   m_ObjectHideFlags: 0
