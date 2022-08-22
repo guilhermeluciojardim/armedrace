@@ -13,7 +13,7 @@ public class CheckPoint : MonoBehaviour
             car = coll.GetComponent<CarController>();
             car.RecoverWeapons();
         }
-        car.SetLaps();
+        
     }
 
 }

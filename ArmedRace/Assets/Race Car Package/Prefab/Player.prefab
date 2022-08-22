@@ -1,5 +1,89 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &277142824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 277142827}
+  - component: {fileID: 277142825}
+  - component: {fileID: 277142826}
+  m_Layer: 0
+  m_Name: Camera2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &277142827
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277142824}
+  m_LocalRotation: {x: 0.00068837404, y: 0.9741157, z: -0.22602953, w: 0.0029467344}
+  m_LocalPosition: {x: 2.5053132, y: 7.593042, z: 11.01424}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4922170374542132}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &277142825
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277142824}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!81 &277142826
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277142824}
+  m_Enabled: 1
 --- !u!1 &1888353955
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,7 +142,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 77
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -456,6 +540,7 @@ Transform:
   - {fileID: 7015978464769204546}
   - {fileID: 7305399429685108976}
   - {fileID: 3524043511531154585}
+  - {fileID: 277142827}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -582,14 +667,25 @@ MonoBehaviour:
     type: 3}
   trackPath: {fileID: 0}
   targetList: []
-  minesImageList: []
-  missilesImageList: []
+  minesImageList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  missilesImageList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   machinegunShotPrefab: {fileID: 136330, guid: 9a0c3383523899643a8d0661cfaca4e4, type: 3}
   missilePrefab: {fileID: 4285155241439558423, guid: 305146a95435dbf479f2658fe32c1bd5,
     type: 3}
   machineGunTransform: {fileID: 7357877238478686536}
   missileGunTransform: {fileID: 1296389133665448839}
   turboScrollBar: {fileID: 0}
+  topViewCamera: {fileID: 1888353957}
+  backViewCamera: {fileID: 277142825}
+  health: 0
+  maxHealth: 0
+  healthScrollBar: {fileID: 0}
 --- !u!1 &698302610251942063
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,43 +38,45 @@ public class CarControllerAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Set the next target in the trackpath
-        float distToTarget = Vector3.Distance (transform.position, currentTarget.position);
-        if (distToTarget < 10f){
-            //Lap completed
-            if (listIndex < targetList.Count -1){
-                listIndex+=1;    
+        if (!carDriver.isAlive){
+            // Set the next target in the trackpath
+            float distToTarget = Vector3.Distance (transform.position, currentTarget.position);
+            if (distToTarget < 10f){
+                //Lap completed
+                if (listIndex < targetList.Count -1){
+                    listIndex+=1;    
+                }
+                else{
+                    listIndex=0;
+                }
+                currentTarget = targetList[listIndex];
+            }
+            SetNextTarget(currentTarget.position);
+
+            // Move forward to target
+            Vector3 dirToMovePosition = (nextTarget - transform.position).normalized;
+            float dot = Vector3.Dot(transform.forward, dirToMovePosition);
+
+            //check if nextTarget is in Front or back
+            if (dot > 0){
+                forwardAmount = -1f;
             }
             else{
-                listIndex=0;
+                forwardAmount = 1f;
             }
-            currentTarget = targetList[listIndex];
-        }
-        SetNextTarget(currentTarget.position);
-       
-        // Move forward to target
-        Vector3 dirToMovePosition = (nextTarget - transform.position).normalized;
-        float dot = Vector3.Dot(transform.forward, dirToMovePosition);
 
-        //check if nextTarget is in Front or back
-        if (dot > 0){
-            forwardAmount = -1f;
-        }
-        else{
-            forwardAmount = 1f;
-        }
+            //Angle to target
+            float angleToDir = Vector3.SignedAngle(transform.forward, dirToMovePosition, Vector3.up);
+            if (angleToDir > 0){
+                turnAmount = -1f;
+            }
+            else{
+                turnAmount = 1f;
+            }
 
-        //Angle to target
-        float angleToDir = Vector3.SignedAngle(transform.forward, dirToMovePosition, Vector3.up);
-        if (angleToDir > 0){
-            turnAmount = -1f;
+            carDriver.SetInputs(forwardAmount, turnAmount);
+            StartCoroutine(CheckTimeStuck(transform.position));
         }
-        else{
-            turnAmount = 1f;
-        }
-
-        carDriver.SetInputs(forwardAmount, turnAmount);
-        StartCoroutine(CheckTimeStuck(transform.position));
     }
 
     public void SetNextTarget(Vector3 nextTarget){

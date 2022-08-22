@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Shootable
   - Car
+  - Bullet
+  - Missile
+  - Mine
   layers:
   - Default
   - TransparentFX

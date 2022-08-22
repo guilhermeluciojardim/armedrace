@@ -64,6 +64,10 @@ public class CarController : MonoBehaviour
 
     [SerializeField] private Camera topViewCamera;
     [SerializeField] private Camera backViewCamera;
+
+    public float health,maxHealth;
+    [SerializeField] private Scrollbar healthScrollBar;
+    public bool isAlive;
     
 
     private void Start(){
@@ -74,6 +78,8 @@ public class CarController : MonoBehaviour
         mines= 3; maxMines = 3;
         missiles = 3; maxMissiles = 3;
         lapsByPlayer=0;
+        health = 100f; maxHealth=100f;
+        isAlive=true;
         GetTrackPath();
     }
 
@@ -94,16 +100,23 @@ public class CarController : MonoBehaviour
         AnimateWheels();
     }
     void LateUpdate(){
-        if (gameObject.CompareTag("Player")) {
-            HandBrake();
-            Turbo();
-            DropMine();
-            RespawnPlayer();
-            PlayerFiring();
-            ChangeCamera();
+        if (isAlive){
+            if (gameObject.CompareTag("Player")) {
+                HandBrake();
+                Turbo();
+                DropMine();
+                RespawnPlayer();
+                PlayerFiring();
+                ChangeCamera();
+            }
+            Move();
+            Steer();
+            CheckHealth();
         }
-        Move();
-        Steer();
+        else{
+
+        }
+        
     }
     
     public void SetInputs(float move, float turn){
@@ -262,12 +275,69 @@ public class CarController : MonoBehaviour
         }
     }
 
-    public void SetLaps(){
-        lapsByPlayer +=1;
+    void UpdateHealthBar(){
+                healthScrollBar.size = health/maxHealth;
+    }
+
+    void OnCollisionEnter(Collision coll){
+        if (coll.gameObject.CompareTag("Bullet")){
+            health -= 0.25f;
+            UpdateHealthBar(); 
+        }
+        else if (coll.gameObject.CompareTag("Missile")){
+            health -= 30f;
+            UpdateHealthBar();  
+        }
+    }
+    void OnTriggerEnter(Collider coll){
+        if (coll.gameObject.CompareTag("Mine")){
+            health -= 15f;
+            UpdateHealthBar();
+        }
+    }
+
+    void CheckHealth(){
+        if (health<0){
+            isAlive = false;
+        }
+    }
+
+    public void SetLaps(int num){
+        lapsByPlayer +=num;
     }
     public int GetLaps(){
         return lapsByPlayer;
     }
+
+    public void SetMines(int num){
+        mines = num;
+    }
+
+    public int GetMines(){
+        return mines;
+    }
+
+    public void SetMissiles(int num){
+        missiles = num;
+    }
+
+    public int GetMissiles(){
+        return missiles;
+    }
+
+    public void SetHealth(float num, bool add){
+        if (add){
+            health += num;
+        }
+        else{
+            health -=num;
+        }
+        
+    }
+    public float GetHealth(){
+        return health;
+    }
+
 
 
 }

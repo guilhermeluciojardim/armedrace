@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8784315928682994346}
   m_Layer: 0
   m_Name: at_mine_LOD0
-  m_TagString: Player
+  m_TagString: Mine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
