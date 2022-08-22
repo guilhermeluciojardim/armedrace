@@ -665,6 +665,7 @@ MonoBehaviour:
     type: 3}
   respawnEffect: {fileID: 1912731163003908, guid: c5febdd93ab44d640b3eb37b768360bb,
     type: 3}
+  dieEffect: {fileID: 1901245927194888, guid: bb98861c48ad2024ca93498c7dd93a6c, type: 3}
   trackPath: {fileID: 0}
   targetList: []
   minesImageList:
@@ -687,6 +688,7 @@ MonoBehaviour:
   maxHealth: 0
   healthScrollBar: {fileID: 0}
   isAlive: 0
+  isMineAvailable: 0
   engineAudio: {fileID: 0}
 --- !u!1 &698302610251942063
 GameObject:

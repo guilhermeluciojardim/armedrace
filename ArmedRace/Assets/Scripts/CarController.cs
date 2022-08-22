@@ -44,6 +44,7 @@ public class CarController : MonoBehaviour
 
     public GameObject steerEffect;
     public GameObject respawnEffect;
+    public GameObject dieEffect;
 
     private int lapsByPlayer;
 
@@ -111,7 +112,6 @@ public class CarController : MonoBehaviour
             Move();
             Steer();
             CheckHealth();
-
         }   
     }
     
@@ -246,7 +246,7 @@ public class CarController : MonoBehaviour
         }
     }
     public void FireMachineGun(){
-            GameObject shot = GameObject.Instantiate(machinegunShotPrefab, machineGunTransform.position, machineGunTransform.transform.rotation) as GameObject;
+            GameObject shot = GameObject.Instantiate(machinegunShotPrefab, machineGunTransform.position,machineGunTransform.rotation) as GameObject;
             GameObject.Destroy(shot, 1.5f);
     }
     public void FireMissile(){
@@ -310,8 +310,9 @@ public class CarController : MonoBehaviour
     }
 
     void CheckHealth(){
-        if (health<0){
+        if ((health<0) && (isAlive)){
             isAlive = false;
+            GameObject die = GameObject.Instantiate(dieEffect, transform.position, transform.rotation) as GameObject;
         }
     }
 

@@ -85,15 +85,16 @@ public class CarControllerAI : MonoBehaviour
             
                 Vector3 dirToEnemy0 = (otherCarsList[0].transform.position - transform.position).normalized;
                 float dotEnemy0 = Vector3.Dot(transform.forward, dirToEnemy0);
+                float distToEnemy0 = Vector3.Distance (transform.position, otherCarsList[0].transform.position);
 
-                if (dotEnemy0 < 0){
+                if ((dotEnemy0 < 0) && (distToEnemy0<30f)){
                     carDriver.FireMachineGun();
                 }
                 else{
                     carDriver.DropMine();
                 }
                 //Fire Missiles
-                float distToEnemy0 = Vector3.Distance (transform.position, otherCarsList[0].transform.position);
+               
                 if ((distToEnemy0 > 15f) && (dotEnemy0<0)){
                     carDriver.FireMissile();
                 }
@@ -103,15 +104,16 @@ public class CarControllerAI : MonoBehaviour
             
                 Vector3 dirToEnemy1 = (otherCarsList[1].transform.position - transform.position).normalized;
                 float dotEnemy1 = Vector3.Dot(transform.forward, dirToEnemy1);
+                float distToEnemy1 = Vector3.Distance (transform.position, otherCarsList[1].transform.position);
 
-                if (dotEnemy1 < 0){
+                if ((dotEnemy1 < 0) && (distToEnemy1<30f)){
                     carDriver.FireMachineGun();
                 }
                 else{
                     carDriver.DropMine();
                 }
                 //Fire Missiles
-                float distToEnemy1 = Vector3.Distance (transform.position, otherCarsList[1].transform.position);
+                
                 if ((distToEnemy1 > 15f) && (dotEnemy1<0)){
                     carDriver.FireMissile();
                 }      
@@ -121,15 +123,16 @@ public class CarControllerAI : MonoBehaviour
             
                 Vector3 dirToEnemy2 = (otherCarsList[2].transform.position - transform.position).normalized;
                 float dotEnemy2 = Vector3.Dot(transform.forward, dirToEnemy2);
+                float distToEnemy2 = Vector3.Distance (transform.position, otherCarsList[2].transform.position);
 
-                if (dotEnemy2 < 0){
+                if ((dotEnemy2 < 0) && (distToEnemy2<30f)){
                     carDriver.FireMachineGun();
                 }
                 else{
                     carDriver.DropMine();
                 }
                 //Fire Missiles
-                float distToEnemy2 = Vector3.Distance (transform.position, otherCarsList[2].transform.position);
+                
                 if ((distToEnemy2 > 15f) && (dotEnemy2<0)){
                     carDriver.FireMissile();
                 }          
