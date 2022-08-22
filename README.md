@@ -15,12 +15,12 @@
 - [x] Set cameras around the player
 - [x] Create player controller
 - [x] Create AI and Enemy controller
-- [ ] Creating shooting with particles
-- [ ] Create obstacles 
-- [ ] Create objects behaviours
+- [x] Creating shooting with particles
+- [x] Create obstacles 
+- [x] Create objects behaviours
 - [x] Create map
-- [ ] Create Game Menu
-- [ ] Build Project
+- [x] Create Game Menu
+- [x] Build Project
 
 ##  🎮 The link for play will be provided here
 
