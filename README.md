@@ -10,6 +10,12 @@
 
 > In this project, I'll be creating a game race game with cars armed with machine guns, mines and other cool stuff.
 
+# GamePlay video
+
+[![Watch the video](https://i9.ytimg.com/vi/6v0bmCWrx4E/mq1.jpg?sqp=CMT8jpgG&rs=AOn4CLClyvPnVkbLyWHSl1IU3b0SxEQJ8A)](https://youtu.be/6v0bmCWrx4E)
+
+
+
 ### Next adjusts and improvements
 
 - [x] Set cameras around the player
