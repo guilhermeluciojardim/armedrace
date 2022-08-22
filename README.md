@@ -23,8 +23,10 @@
 - [x] Build Project
 
 ##  🎮 Download and Install
-
+1 - Download the files from the link below.
 https://drive.google.com/file/d/15Q9mwJ-1rZdQdIjEQLwbigg41nZMnn1P/view?usp=sharing
+2 - Unzip folder
+3 - Run ArmedRace.exe and have fun! 
 
 ## 💻 System Requirements
 
