@@ -12,7 +12,7 @@
 
 # GamePlay video
 
-[![Watch the video](https://i9.ytimg.com/vi/6v0bmCWrx4E/mq1.jpg?sqp=CMT8jpgG&rs=AOn4CLClyvPnVkbLyWHSl1IU3b0SxEQJ8A)](https://youtu.be/6v0bmCWrx4E)
+[![Watch the video](https://youtu.be/6v0bmCWrx4E)
 
 
 
